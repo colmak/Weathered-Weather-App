@@ -1,8 +1,13 @@
 {% extends "weathered/base.html" %}
+{% load static %}
 
 {% block body %}
-    <nav class="navbar navbar-dark p-3 fixed top bg-dark">
+    <div id="body-background">
+    <nav class="navbar navbar-light p-3 fixed top bg-transparent">
         <div class="container-fluid d-flex justify-content-center">
+            <div class="nav-item text-dark pe-3">
+                <a class="nav-link" href="#">History</a>
+            </div>
             <form class="d-flex input-group w-auto">
                 <input
                         type="search"
@@ -11,122 +16,129 @@
                         aria-label="Search"
                         aria-describedby="search-addon"
                 />
-                <span class="input-group-text text-white bg-transparent border-2" id="search-addon">
+                <span class="input-group-text text-black bg-transparent border-0" id="search-addon">
         <svg xmlns="http://www.w3.org/2000/svg" class="bg-none feather feather-arrow-right" width="24" height="24"
              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
              stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline
                 points="12 5 19 12 12 19"></polyline></svg>
       </span>
             </form>
-            <div class="nav-item text-light ps-3">
+            <div class="nav-item text-dark ps-3">
                 <a class="nav-link" href="#">Login</a>
             </div>
         </div>
     </nav>
 
 
-    <div class="container py-5 h-100">
+    <div id="background" class="container py-5 h-100">
 
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-7 col-xl-5">
-
-
-                    <div class="card mb-4">
-                        <div class="card-body p-4">
-{#                            image background#}
-                            <h4 class="mb-0">New Britain, CT, US</h4>
-                            <p class="display-2 my-3">60.4°F</p>
-                            <p class="mb-2">Feels Like: <bold>61.4°F</bold></p>
-                            <p class="mb-2">High: 64.1°F <bold>Low: 60.7°F</bold></p>
-                            <h5>Windy </h5>
-                            <div class="d-flex justify-content-end">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smile py-1"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown py-1"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-meh py-1"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
-                            </div>
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        {# image background #}
+                        {# <img src="{% static '/images/clouds.jpg' %}" alt="clouds">#}
+                        <h4 class="mb-0">New Britain, CT, US</h4>
+                        <p class="display-2 my-3">60.4°F</p>
+                        <p class="mb-2">Feels Like: <strong>61.4°F</strong></p>
+                        <p class="mb-2">High: <strong>64.1°F</strong> Low: <strong>60.7°F</strong></p>
+                        <h5>Windy </h5>
+                        <div class="d-flex justify-content-end">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-smile py-1">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-frown py-1">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M16 16s-1.5-2-4-2-4 2-4 2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round" class="feather feather-meh py-1">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="8" y1="15" x2="16" y2="15"></line>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
                         </div>
                     </div>
+                </div>
 
-
-
-                <div class="card mb-4" style="border-radius: 25px;">
+                {# Hourly Card #}
+                <div class="card mb-4">
                     <div class="card-body p-4">
-                        <div class="carousel slide" data-ride="carousel">
-                            <!-- Carousel inner -->
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
-                                        <div class="flex-column">
-                                            <p class="small"><bold>21°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>12:00</bold></p>
-                                            <p class="mb-0 text-muted" >PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>2°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>1:00</bold></p>
-                                            <p class="mb-0 text-muted" >PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>20°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>2:00</bold></p>
-                                            <p class="mb-0 text-muted" >PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>19°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>3:00</bold></p>
-                                            <p class="mb-0 text-muted" >PM</p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>18°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>4:00</bold></p>
-                                            <p class="mb-0 text-muted" >PM</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon#}
+                                <p class="mb-0"><strong>12:00</strong></p>
+                                <p class="mb-0 text-muted">PM</p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>1:00</strong></p>
+                                <p class="mb-0 text-muted">PM</p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>2:00</strong></p>
+                                <p class="mb-0 text-muted">PM</p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>3:00</strong></p>
+                                <p class="mb-0 text-muted">PM</p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>4:00</strong></p>
+                                <p class="mb-0 text-muted">PM</p>
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="card" style="border-radius: 25px;">
+                {# Week Card #}
+                <div class="card">
                     <div class="card-body p-4">
-                        <div class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
-                                        <div class="flex-column">
-                                            <p class="small"><bold>21°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>Mon</bold></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>20°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>Tue</bold></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>16°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>Wed</bold></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>17°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>Thu</bold></p>
-                                        </div>
-                                        <div class="flex-column">
-                                            <p class="small"><bold>18°C</bold></p>
-{#                                            icon#}
-                                            <p class="mb-0"><bold>Fri</bold></p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>Mon</strong></p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>Tue</strong></p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>Wed</strong></p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>Thu</strong></p>
+                            </div>
+                            <div class="flex-column">
+                                <p class="small"><strong>50°F</strong></p>
+                                {# icon #}
+                                <p class="mb-0"><strong>Fri</strong></p>
                             </div>
                         </div>
 
@@ -141,5 +153,5 @@
 
 
 
-
+</div>
 {% endblock %}
