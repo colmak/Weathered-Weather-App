@@ -19,5 +19,9 @@ from Weathered import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name="index")
+    path('', views.index, name="index"),
+    path('history/', views.history, name="history"),
+    path('login/', views.login, name="login"),
+    path('register/', views.register, name="register"),
+    path('topweather/', views.topweather, name="topweather")
 ]
