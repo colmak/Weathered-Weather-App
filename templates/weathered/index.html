@@ -24,7 +24,10 @@
       </span>
             </form>
             <div class="nav-item text-dark ps-3">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href={% url 'login' %}>Login</a>
+            </div>
+            <div class="nav-item text-dark ps-3">
+                <a class="nav-link" href={% url 'register' %}>Register</a>
             </div>
         </div>
     </nav>
