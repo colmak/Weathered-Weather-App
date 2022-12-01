@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 
 
 # Create your views here.
+@login_required(login_url='login')
 def index(request):
     return render(request, 'weathered/index.html')
 
@@ -46,7 +48,7 @@ def register_view(request):
         # Create an empty instance of Django's UserCreationForm to generate the necessary html on the template.
         form = UserCreationForm()
 
-    return render(request, 'accounts/register.html', {'form': form})
+    return render(request, 'weathered/register.html', {'form': form})
 
 
 def login_view(request):
@@ -67,7 +69,7 @@ def login_view(request):
         # Create an empty instance of Django's AuthenticationForm to generate the necessary html on the template.
         form = AuthenticationForm()
 
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'weathered/login.html', {'form': form})
 
 
 def logout_view(request):
