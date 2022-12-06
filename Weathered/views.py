@@ -5,21 +5,12 @@ from django.contrib.auth import login, logout
 
 
 # Create your views here.
-@login_required(login_url='login')
 def index(request):
     return render(request, 'weathered/index.html')
 
 
 def history(request):
     return render(request, 'weathered/history.html')
-
-
-def login(request):
-    return render(request, 'weathered/login.html')
-
-
-def register(request):
-    return render(request, 'weathered/register.html')
 
 
 def topweather(request):
