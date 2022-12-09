@@ -56,3 +56,8 @@ def logout_view(request):
     logout(request)
     # redirect the user to index page after logout
     return redirect('index')
+
+
+@login_required
+def profile_view(request):
+    render(request, 'accounts/profile.html')
