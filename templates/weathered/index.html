@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Index temp
+    Index
 {% endblock %}
 
 
@@ -31,9 +31,6 @@
                 </span>
             </form>
             {% if user.is_authenticated %}
-                <div class="nav-item text-dark ps-3">
-                    <a class="nav-link" href={% url 'profile' %}>temp-insert-icon</a>
-                </div>
                 <div class="nav-item text-dark ps-3">
                     <a class="nav-link" href={% url 'logout' %}>Logout</a>
                 </div>
