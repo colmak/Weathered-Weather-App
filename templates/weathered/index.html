@@ -32,14 +32,14 @@
             </form>
             {% if user.is_authenticated %}
                 <div class="nav-item text-dark ps-3">
-                    <a class="nav-link" href={% url 'logout' %}>Logout</a>
+                    <a class="nav-link" href={% url 'accounts/logout' %}>Logout</a>
                 </div>
             {% else %}
                 <div class="nav-item text-dark ps-3">
-                    <a class="nav-link" href={% url 'login' %}>Login</a>
+                    <a class="nav-link" href={% url 'accounts/login' %}>Login</a>
                 </div>
                 <div class="nav-item text-dark ps-3">
-                    <a class="nav-link" href={% url 'register' %}>Register</a>
+                    <a class="nav-link" href={% url 'accounts/register' %}>Register</a>
                 </div>
             {% endif %}
         </div>
