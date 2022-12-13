@@ -32,8 +32,8 @@
             </form>
             {% if user.is_authenticated %}
                 <div class="nav-item text-dark ps-3">
-                    <a class="nav-link" href={% url 'profile' %}> <img style="width: 100px"
-                                                                       class="img-fluid img-thumbnail"
+                    <a class="nav-link" href={% url 'profile' %}> <img style="width: 70px"
+                                                                       class="img-fluid rounded-5"
                                                                        src="{{ user.profile.profile_pic.url }}">
                     </a>
                 </div>
