@@ -14,7 +14,11 @@
                     <div class="row my-3 py-3 d-flex justify-content-center">
                         <img style="width: 250px"
                              class="img-fluid rounded-5"
-                             src="{{ user.profile.profile_pic.url }}">
+                             {% if user.profile.profile_pic.url == "/media/base.jpg" %}
+                                                                       src={{ "https://ui-avatars.com/api/?name="|add:user.username}}{{"&background=random" }}>
+                                                                       {% else %}
+                                                                       src="{{ user.profile.profile_pic.url }}">
+                                                                       {% endif %}
                     </div>
                     <h1 class="d-flex justify-content-center">{{ user.username }}</h1>
                     <form method="post" enctype="multipart/form-data">
