@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Weathered.apps.WeatheredConfig',
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'crispy_forms',
 
 ]
