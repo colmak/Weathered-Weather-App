@@ -21,9 +21,8 @@
                                 {% endif %}
                     </div>
                     <h1 class="d-flex justify-content-center">{{ user.username }}</h1>
-                    <form method="post" enctype="multipart/form-data">
-                        {{ form|crispy }}
-                        {% csrf_token %}
+
+
                         <div class="form-row d-flex justify-content-center">
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -31,7 +30,7 @@
 
                                 </div>
 
-                                <label class="small mb-1">About:</label> {{ user.about }}
+                                <label class="small mb-1">About:</label> {{ user.profile.about }}
                             </div>
                         </div>
                         <br><br>
@@ -39,7 +38,7 @@
                             <a class="btn btn-success btn-lg me-2" href={% url 'profile' %}>Edit</a>
                             <a class="btn btn-primary btn-lg me-2" href={% url 'index' %}>Back</a>
                         </div>
-                    </form>
+
                 </div>
             </div>
 
