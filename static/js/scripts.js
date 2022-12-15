@@ -210,6 +210,7 @@ function toggleDarkMode(e, changeState = true) {
   e.classList.toggle('fa-moon');
   e.classList.toggle('fa-sun');
 
+
   document.getElementById('index').classList.toggle('bg-darker');
   document.getElementById('index').classList.toggle('bg-light');
   document.getElementById('index').classList.toggle('scroll-cool');
