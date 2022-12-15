@@ -1,0 +1,84 @@
+{% extends "weathered/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block body %}
+
+    <div class="row d-flex justify-content-center h-100 py-5">
+        <div class="col-md-6 col-lg-6 col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row my-3 py-3 d-flex justify-content-center">
+                        <img style="width: 250px"
+                             class="img-fluid rounded-5"
+                                {% if user.profile.profile_pic.url == "/media/base.jpg" %}
+                             src={{ "https://ui-avatars.com/api/?name="|add:user.username }}{{ "&background=random" }}>
+                                {% else %}
+                                    src="{{ user.profile.profile_pic.url }}">
+                                {% endif %}
+                    </div>
+                    <h1 class="d-flex justify-content-center">{{ user.username }}</h1>
+                    <form method="post" enctype="multipart/form-data">
+                        {{ form|crispy }}
+                        {% csrf_token %}
+                        <div class="form-row d-flex justify-content-center">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="small mb-1 ">Date Joined: {{ user.date_joined }}</label>
+
+                                </div>
+
+                                <label class="small mb-1">About:</label> {{ user.about }}
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="d-flex justify-content-center">
+                            <a class="btn btn-success btn-lg me-2" href={% url 'profile' %}>Edit</a>
+                            <a class="btn btn-primary btn-lg me-2" href={% url 'index' %}>Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for reaction in reactions|slice:":5" %}
+        <div class="card mb-3">
+            <div class="card-body p-4">
+                <h4 class="mb-0">{{ reaction.location }}</h4>
+                <p class="display-2 my-3">{{ reaction.temp }}</p>
+                <h5>{{ reaction.condition }} </h5>
+                <div class="d-flex justify-content-end">
+                    {% if reaction.reaction == "Happy" %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                             fill="none" stroke="green" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round" class="feather feather-smile py-1">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                    {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                             fill="none" stroke="red" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round" class="feather feather-frown py-1">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M16 16s-1.5-2-4-2-4 2-4 2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    {% empty %}
+        <div class="card-body p-4">
+            <h4 class="mb-0">No reactions :(</h4>
+        </div>
+    {% endfor %}
+
+{% endblock %}

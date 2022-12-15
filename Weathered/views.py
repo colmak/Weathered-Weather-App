@@ -1,15 +1,18 @@
 from django.shortcuts import render
 
+from Weathered.models import Reaction
+
 
 # Create your views here.
 def index(request):
+
     return render(request, 'weathered/index.html')
 
 
 def history(request):
-    return render(request, 'weathered/history.html')
+    reaction = Reaction.objects.all()
+    context = {'reactions': reaction}
+    return render(request, 'weathered/history.html', context)
 
 
-def topweather(request):
-    return render(request, 'weathered/topweather.html')
 

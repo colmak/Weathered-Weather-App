@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
 
+from Weathered.models import Reaction
 from accounts.forms import UpdateProfileForm, UpdateUserForm
 
 
@@ -52,4 +53,13 @@ def profile_view(request):
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
-    return render(request, 'accounts/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'accounts/profile.html',
+                  {'user_form': user_form, 'profile_form': profile_form})
+
+
+@login_required
+def display_profile_view(request):
+    reaction = Reaction.objects.filter(user=request.user)
+    user = request.user
+
+    return render(request, 'accounts/display_profile.html', {'user': user, 'reactions': reaction})

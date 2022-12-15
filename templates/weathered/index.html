@@ -12,7 +12,7 @@
     <nav class="navbar navbar-light p-3 fixed top bg-transparent">
         <div class="container-fluid d-flex justify-content-center">
             <div class="nav-item text-dark pe-3">
-                <a class="nav-link" href="#">History</a>
+                <a class="nav-link" href={% url 'history' %}>History</a>
             </div>
             <form class="d-flex input-group w-auto">
                 <input
@@ -32,20 +32,16 @@
                 </span>
             </form>
             {% if user.is_authenticated %}
-                {% if user.profile.profile_pic.url == "/media/base.jpg" %}
                     <div class="nav-item text-dark ps-3">
-                    <a class="nav-link" href={% url 'profile' %}> <img style="width: 70px"
+                    <a class="nav-link" href={% url 'display_profile' %}> <img style="width: 70px"
                                                                        class="img-fluid rounded-5"
                                                                        {% if user.profile.profile_pic.url == "/media/base.jpg" %}
-                                                                       src={{ "https://ui-avatars.com/api/?name="|add:user.username}}{{"&background=random" }}>
+                                                                       src={{ "https://ui-avatars.com/api/?name="|add:user.username}}{{"&background=random"}}>
                                                                        {% else %}
                                                                        src="{{ user.profile.profile_pic.url }}">
                                                                        {% endif %}
                     </a>
                 </div>
-                {% endif %}
-
-
                 <div class="nav-item text-dark ps-3">
                     <a class="nav-link" href={% url 'logout' %}>Logout</a>
                 </div>

@@ -1,6 +1,67 @@
 {% extends "weathered/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}
     History
 {% endblock %}
+
+
+{% block body %}
+    <body class="bg-light">
+    <div id="background" class="container py-5 h-100">
+
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-7 col-xl-5">
+                <div class="card mb-4">
+                    <div class="card-body p-3">
+                        <h4 class="mb-0">Social</h4>
+                        <p class="lead">How people are feeling about the weather
+                    </div>
+                </div>
+                {% for reaction in reactions|slice:":5" %}
+                    <div class="card mb-3">
+                        <div class="card-body p-4">
+                            <h4 class="mb-0">{{ reaction.location }}</h4>
+                            <p class="display-2 my-3">{{ reaction.temp }}</p>
+                            <h5>{{ reaction.condition }} </h5>
+                            <div class="d-flex justify-content-end">
+                                {% if reaction.reaction == "Happy" %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                         fill="none" stroke="green" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round" class="feather feather-smile py-1">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                {% else %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                         fill="none" stroke="red" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round" class="feather feather-frown py-1">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M16 16s-1.5-2-4-2-4 2-4 2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="card-body p-4">
+                        <h4 class="mb-0">No reactions :(</h4>
+                    </div>
+                {% endfor %}
+                <a class="btn btn-primary btn-lg me-2" href={% url 'index' %}>Back</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    </body>
+{% endblock %}
+
+
 
