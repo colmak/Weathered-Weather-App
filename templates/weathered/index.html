@@ -8,7 +8,7 @@
 
 
 {% block body %}
-    <body class="bg-light">
+    <body id="index" class="bg-light scroll-warm">
     <nav class="navbar navbar-light p-3 fixed top bg-transparent">
         <div class="container-fluid d-flex justify-content-center">
             <div class="nav-item text-dark pe-3">
@@ -16,13 +16,17 @@
             </div>
             <form class="d-flex input-group w-auto">
                 <input
+                        id="search-box"
                         type="search"
                         class="form-control rounded"
                         placeholder="Search Locations..."
                         aria-label="Search"
                         aria-describedby="search-addon"
+                        list="geoLocations"
+                        name="geoLocation"
                 />
-                <span class="input-group-text text-black bg-transparent border-0" id="search-addon">
+                <datalist id="geoLocations"></datalist>
+                <span onclick="parseLocation()" class="input-group-text text-black bg-transparent border-0" id="search-addon">
                     <svg xmlns="http://www.w3.org/2000/svg" class="bg-none feather feather-arrow-right" width="24"
                          height="24"
                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -56,6 +60,7 @@
         </div>
     </nav>
 
+    <i id="dark" onclick="toggleDarkMode(this);" class="fa-solid fa-moon toggle-dark d-inline position-absolute end-0 top-0 m-3"></i>
 
     <div id="background" class="container pb-5 h-100">
 
@@ -63,11 +68,13 @@
             <div class="col-md-9 col-lg-7 col-xl-5">
                 <div class="card mb-4">
                     <div class="card-body p-4">
-                        <h4 class="mb-0">New Britain, CT, US</h4>
-                        <p class="display-2 my-3">60.4°F</p>
-                        <p class="mb-2">Feels Like: <strong>61.4°F</strong></p>
-                        <p class="mb-2">High: <strong>64.1°F</strong> Low: <strong>60.7°F</strong></p>
-                        <h5>Windy </h5>
+                        <h4 class="mb-0"><span id="location"><i class="fa-solid fa-circle-exclamation"></i> Error fetching data</span></h4>
+                        <p class="display-2 my-3"><span id="temperature">32</span>°F</p>
+                        <h5><span id="weather-condition"></span></h5>
+                        <p class="mb-2">Feels Like: <strong><span id="apparent-temperature">32</span>°F</strong></p>
+                        <p class="mb-2">High: <strong><span id="hi-temperature">32</span>°F</strong> Low: <strong><span id="lo-temperature">32</span>°F</strong></p>
+                        <h5><i class="bi bi-sunrise"></i> Sunrise: <span id="sunrise">12:00 AM</span></h5>
+                        <h5><i class="bi bi-sunset"></i> Sunset: <span id="sunset">11:59 PM</span></h5>
                         <div class="d-flex justify-content-end">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -85,14 +92,6 @@
                                 <line x1="9" y1="9" x2="9.01" y2="9"></line>
                                 <line x1="15" y1="9" x2="15.01" y2="9"></line>
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-meh py-1">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="8" y1="15" x2="16" y2="15"></line>
-                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                            </svg>
                         </div>
                     </div>
                 </div>
@@ -102,34 +101,34 @@
                     <div class="card-body p-4">
                         <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
                             <div class="flex-column">
-                                <p class="small"><strong>50°F</strong></p>
-                                {# icon#}
-                                <p class="mb-0"><strong>1:00</strong></p>
-                                <p class="mb-0 text-muted">AM</p>
+                                <p class="small"><strong><span class="hourly-temperature">32</span>°F</strong></p>
+                                <div class="hourly-icon"></div>
+                                <p class="mb-0"><strong><span class="hourly-hour">12</span>:00</strong></p>
+                                <p class="mb-0 text-muted"><span class="hourly-period">AM</span></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>52°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>2:00</strong></p>
-                                <p class="mb-0 text-muted">AM</p>
+                                <p class="small"><strong><span class="hourly-temperature">32</span>°F</strong></p>
+                                <div class="hourly-icon"></div>
+                                <p class="mb-0"><strong><span class="hourly-hour">1</span>:00</strong></p>
+                                <p class="mb-0 text-muted"><span class="hourly-period">AM</span></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>53°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>3:00</strong></p>
-                                <p class="mb-0 text-muted">AM</p>
+                                <p class="small"><strong><span class="hourly-temperature">32</span>°F</strong></p>
+                                <div class="hourly-icon"></div>
+                                <p class="mb-0"><strong><span class="hourly-hour">2</span>:00</strong></p>
+                                <p class="mb-0 text-muted"><span class="hourly-period">AM</span></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>55°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>4:00</strong></p>
-                                <p class="mb-0 text-muted">AM</p>
+                                <p class="small"><strong><span class="hourly-temperature">32</span>°F</strong></p>
+                                <div class="hourly-icon"></div>
+                                <p class="mb-0"><strong><span class="hourly-hour">3</span>:00</strong></p>
+                                <p class="mb-0 text-muted"><span class="hourly-period">AM</span></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>56°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>5:00</strong></p>
-                                <p class="mb-0 text-muted">AM</p>
+                                <p class="small"><strong><span class="hourly-temperature">32</span>°F</strong></p>
+                                <div class="hourly-icon"></div>
+                                <p class="mb-0"><strong><span class="hourly-hour">4</span>:00</strong></p>
+                                <p class="mb-0 text-muted"><span class="hourly-period">AM</span></p>
                             </div>
                         </div>
 
@@ -141,29 +140,44 @@
                     <div class="card-body p-4">
                         <div class="d-flex justify-content-around text-center mb-4 pb-3 pt-2">
                             <div class="flex-column">
-                                <p class="small"><strong>51°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>Mon</strong></p>
+                                <p class="small"><strong>
+                                    <span class="daily-hi-temperature">32</span>°F<br>
+                                    <span class="text-muted"><span class="daily-lo-temperature">32</span>°F</span>
+                                </strong></p>
+                                <div class="daily-icon"></div>
+                                <p class="mb-0"><strong><span class="daily-day">Mon</span></strong></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>52°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>Tue</strong></p>
+                                <p class="small"><strong>
+                                    <span class="daily-hi-temperature">32</span>°F<br>
+                                    <span class="text-muted"><span class="daily-lo-temperature">32</span>°F</span>
+                                </strong></p>
+                                <div class="daily-icon"></div>
+                                <p class="mb-0"><strong><span class="daily-day">Tue</span></strong></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>53°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>Wed</strong></p>
+                                <p class="small"><strong>
+                                    <span class="daily-hi-temperature">32</span>°F<br>
+                                    <span class="text-muted"><span class="daily-lo-temperature">32</span>°F</span>
+                                </strong></p>
+                                <div class="daily-icon"></div>
+                                <p class="mb-0"><strong><span class="daily-day">Wed</span></strong></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>54°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>Thu</strong></p>
+                                <p class="small"><strong>
+                                    <span class="daily-hi-temperature">32</span>°F<br>
+                                    <span class="text-muted"><span class="daily-lo-temperature">32</span>°F</span>
+                                </strong></p>
+                                <div class="daily-icon"></div>
+                                <p class="mb-0"><strong><span class="daily-day">Thu</span></strong></p>
                             </div>
                             <div class="flex-column">
-                                <p class="small"><strong>55°F</strong></p>
-                                {# icon #}
-                                <p class="mb-0"><strong>Fri</strong></p>
+                                <p class="small"><strong>
+                                    <span class="daily-hi-temperature">32</span>°F<br>
+                                    <span class="text-muted"><span class="daily-lo-temperature">32</span>°F</span>
+                                </strong></p>
+                                <div class="daily-icon"></div>
+                                <p class="mb-0"><strong><span class="daily-day">Fri</span></strong></p>
                             </div>
                         </div>
 
