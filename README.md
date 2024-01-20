@@ -1,5 +1,8 @@
 # Weathered
 
+![image](https://github.com/colmak/Weathered-Weather-App/assets/69098858/d488c6d4-f11d-4690-8a4a-ad45e23d210a)
+
+
 ## Weather App with Custom Search Autocomplete, User Profiles, and Reaction Feature
 This is a web-based weather application that allows users to search for the weather information of any location worldwide. The app provides custom search autocomplete suggestions, user profiles, and a reaction feature where users can react to the weather information of a particular location.
 
